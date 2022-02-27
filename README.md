@@ -1,2 +1,2 @@
 # Santero
-Food ecommerce website for a real business
+Food ecommerce website for a real business.
