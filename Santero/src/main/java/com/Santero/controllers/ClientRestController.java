@@ -12,37 +12,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Santero.entities.User;
-import com.Santero.services.UserService;
+import com.Santero.entities.Client;
+import com.Santero.services.ClientService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/client")
 /**
  * @author Lamberti
  */
-public class UserRestController {
+public class ClientRestController {
 
 	//Los nombres de los mapeos son de prueba. Pueden cambiarse en todo momento.
 	
 	@Autowired
-	private UserService userService;
+	private ClientService clientService;
 	/**
 	 * @author Franco Lamberti
 	 * Este método retorna todos los usuarios actuales
 	 */
-	@GetMapping("/users-list")
-	public List<User> getAll(){
-		return userService.getAll();
+	@GetMapping("/clients-list")
+	public List<Client> getAll(){
+		return clientService.getAll();
+	}
+	
+	/**
+	 * @author Franco Lamberti
+	 * Este método devuelve un único cliente segun su ID
+	 */
+	@GetMapping("/find/{id}")
+	public Client find(@PathVariable String id) {
+		return clientService.getById(id);
 	}
 	
 	/**
 	 * @author Franco Lamberti
 	 * Este método retorna el usuario guardado con un código 200
 	 */
-	@GetMapping("/save/{id}")
-	public ResponseEntity<User> save(@RequestBody User User) throws Exception{//Transformo en un objeto los datos recibidos
-		User obj = userService.save(User); //Guardo al User que obtuve
-		return new ResponseEntity<User>(obj, HttpStatus.OK);//Retorno un ResponseEntity igual al User guardado y un Status 200(OK)
+	@GetMapping("/save")
+	public ResponseEntity<Client> save(@RequestBody Client client) throws Exception{//Transformo en un objeto los datos recibidos
+		Client obj = clientService.save(client); //Guardo al Client que obtuve
+		return new ResponseEntity<Client>(obj, HttpStatus.OK);//Retorno un ResponseEntity igual al Client guardado y un Status 200(OK)
 	}
 	
 	/**
@@ -50,16 +59,16 @@ public class UserRestController {
 	 * Este método retorna el usuario eliminado. Puede dar un código 200 en caso de que se elimine correctamente o un 500 en caso de que no se pueda eliminar
 	 */
 	@PostMapping("/delete/{id}")
-	public ResponseEntity<User> delete(@PathVariable("id") String id) throws Exception{
-		User user = userService.getById(id);
-		if(user != null) {//Si User no es nulo lo borro
-			userService.delete(user);
+	public ResponseEntity<Client> delete(@PathVariable("id") String id) throws Exception{
+		Client client = clientService.getById(id);
+		if(client != null) {//Si Client no es nulo lo borro
+			clientService.delete(client);
 		}else {
 			//Si es nulo tiro un error 500
-			return new ResponseEntity<User>(user, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Client>(client, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		//Si no es nulo, retorna el user y un 200
-		return new ResponseEntity<User>(user, HttpStatus.OK);		
+		return new ResponseEntity<Client>(client, HttpStatus.OK);		
 	}
 	
 }

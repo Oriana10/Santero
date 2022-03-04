@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Santero.entities.Client;
 import com.Santero.entities.Order;
 import com.Santero.services.OrderService;
 
@@ -31,9 +32,19 @@ public class OrderRestController {
 	 * @author Franco Lamberti
 	 * Este método retorna todas las ordenes actuales
 	 */
-	@GetMapping("/Orders-list")
+	@GetMapping("/list")
 	public List<Order> getAll(){
 		return orderService.getAll();
+	}
+	
+	/**
+	 * @author Franco Lamberti
+	 * Este método devuelve un único cliente segun su ID
+	 * @throws Exception 
+	 */
+	@GetMapping("/find/{id}")
+	public Order find(@PathVariable String id) throws Exception {
+		return orderService.getById(id);
 	}
 	
 	/**

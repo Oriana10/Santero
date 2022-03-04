@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 /**
  * @author Franco Lamberti
- * Este servicio permite validar de forma rápida un objeto o varios. Es genérico por lo que se puede enviar cualquier objeto (int, long, User, String, etc).
+ * Este servicio permite validar de forma rápida un objeto o varios. Es genérico por lo que se puede enviar cualquier objeto (int, long, Client, String, etc).
  */
 public class Validator {
 

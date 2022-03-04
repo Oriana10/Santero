@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.Santero.entities.Cart;
 import com.Santero.entities.Order;
-import com.Santero.entities.User;
+import com.Santero.entities.Client;
 import com.Santero.repositories.OrderRepository;
 
 @Service
@@ -39,19 +39,19 @@ public class OrderService {
 	 * Este método obtiene todos los atributos de una orden y crea un objeto usando los mismos. Se puede usar para crear o editar.
 	 * @param number
 	 * @param cart
-	 * @param user
+	 * @param client
 	 * @param payment
 	 */
-	public Order save(Long number, Cart cart, User user, Payment payment) throws Exception {
-		List<Object> objects = Arrays.asList(number, cart, user, payment);
-		List<String> names = Arrays.asList("Number", "Cart", "User", "Payment");
+	public Order save(Long number, Cart cart, Client client, Payment payment) throws Exception {
+		List<Object> objects = Arrays.asList(number, cart, client, payment);
+		List<String> names = Arrays.asList("Number", "Cart", "Client", "Payment");
 		validator.notNullObjects(objects, names);
 		
 		Order order = new Order();
 		order.setCart(cart);
 		order.setNumber(number);
 		order.setPayment(payment);
-		order.setUser(user);
+		order.setUser(client);
 		
 		orderRepository.save(order);
 	}

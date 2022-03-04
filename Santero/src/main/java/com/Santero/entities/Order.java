@@ -29,19 +29,19 @@ public class Order {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User user;
+	private Client client;
 	
 	@OneToOne
 	private Payment payment;
 
 	public Order() {}
 	
-	public Order(String id, Long number, Cart cart, User user, Payment payment) {
+	public Order(String id, Long number, Cart cart, Client client, Payment payment) {
 		super();
 		this.id = id;
 		this.number = number;
 		this.cart = cart;
-		this.user = user;
+		this.client = client;
 		this.payment = payment;
 	}
 
@@ -69,12 +69,12 @@ public class Order {
 		this.cart = cart;
 	}
 
-	public User getUser() {
-		return user;
+	public Client getUser() {
+		return client;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Client client) {
+		this.client = client;
 	}
 
 	public Payment getPayment() {

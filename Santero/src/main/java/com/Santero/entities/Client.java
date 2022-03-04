@@ -20,7 +20,7 @@ import com.Santero.enums.Role;
 /**
  * @author Lamberti
  */
-public class User {
+public class Client {
 	
 	@Id
 	@GeneratedValue(generator = "uuid")
@@ -61,9 +61,9 @@ public class User {
 	@OneToOne
 	private Cart cart;
 
-	public User(){}
+	public Client(){}
 
-	public User(String id, String name, String surname, Role role, String password, String email, Long phoneNumber,
+	public Client(String id, String name, String surname, Role role, String password, String email, Long phoneNumber,
 			String address, Long dni, List<Order> orders, Cart cart) {
 		super();
 		this.id = id;
