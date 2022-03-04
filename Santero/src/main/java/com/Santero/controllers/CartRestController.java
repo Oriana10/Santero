@@ -1,5 +1,5 @@
 package com.Santero.controllers;
 
-public class ProductController {
+public class CartRestController {
 
 }
