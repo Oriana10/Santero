@@ -1,0 +1,10 @@
+/** Colors */
+:root {
+  --primary-color: #ff2a3f;
+  --high-light-color: #ffcd00;
+  --terciary-color: #ff9237;
+
+  --secondary-color: #ffffff;
+  --background-color: #eeeeee;
+  --contrast-color: #000000;
+}
