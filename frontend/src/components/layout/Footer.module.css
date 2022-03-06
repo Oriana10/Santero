@@ -1,0 +1,54 @@
+@import url('../../assets/_variables.css');
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--contrast-color);
+  color: var(--secondary-color);
+  max-height: calc(163px - 2rem);
+  padding: 1rem 3rem;
+}
+
+.linksFooter {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.logoFooter {
+  display: flex;
+  align-items: center;
+}
+.logoFooter img {
+  height: 80%;
+}
+.redesFooter {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-height: calc(263px - 2rem);
+    padding: 1rem;
+  }
+  .linksFooter,
+  .redesFooter {
+    width: 100%;
+  }
+  .logoFooter img {
+    height: 5rem;
+  }
+  .linksFooter,
+  .redesFooter {
+    justify-content: center;
+  }
+}

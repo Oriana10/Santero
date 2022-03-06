@@ -1,4 +1,64 @@
+@import url('../../assets/_variables.css');
+
 .header {
   display: flex;
   justify-content: space-between;
+  background-color: var(--primary-color);
+}
+
+.header {
+  max-height: calc(140px - 32px);
+  padding: 16px 36px;
+}
+
+.header .logo {
+}
+.header .logo img {
+  height: 100%;
+}
+
+.listLinks {
+  display: flex;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 36px;
+  gap: 3.5rem;
+}
+
+.listLinks > li > a {
+  color: white;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+.menu a svg {
+  color: white;
+  height: 75px;
+  width: 75px;
+}
+
+.listLinks a:hover,
+.menu a:hover svg {
+  color: var(--high-light-color);
+}
+
+@media (max-width: 768px) {
+  .header {
+    max-height: calc(80px - 32px);
+    padding: 16px 16px;
+  }
+  .listLinks {
+    font-size: 18px;
+    gap: 1rem;
+  }
+  .menu {
+    gap: 1rem;
+  }
+  .menu a svg {
+    height: 32px;
+    width: 32px;
+  }
 }
