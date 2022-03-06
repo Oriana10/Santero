@@ -23,7 +23,7 @@ public class Cart {
 	private Float totalCost;
 	
 	@OneToOne
-	private User user;
+	private Client client;
 	@OneToOne 
 	private Order order;
 	
@@ -33,12 +33,12 @@ public class Cart {
 	}
 
 
-	public Cart(String idCart, List<Product> productList, Float totalCost, User user, Order order) {
+	public Cart(String idCart, List<Product> productList, Float totalCost, Client client, Order order) {
 		super();
 		this.idCart = idCart;
 		this.productList = productList;
 		this.totalCost = totalCost;
-		this.user = user;
+		this.client = client;
 		this.order = order;
 	}
 
@@ -73,13 +73,13 @@ public class Cart {
 	}
 
 
-	public User getUser() {
-		return user;
+	public Client getClient() {
+		return client;
 	}
 
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Client client) {
+		this.client = client;
 	}
 
 

@@ -17,11 +17,11 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	@Autowired 
-	private CartService cartService;
+	public Product saveProduct(Product product) {
+		return productRepository.save(product);
+	}
 	
-	
-	public Product newProduct(String productName, Float productPrice, String description, ProductCategory productCategory, Integer stock, String productImage, Cart cart) {
+	public Product saveProduct(String productName, Float productPrice, String description, ProductCategory productCategory, Integer stock, String productImage, Cart cart) {
 		
 		Product product = new Product();
 		product.setProductName(productName);
@@ -35,36 +35,10 @@ public class ProductService {
 		return productRepository.save(product);
 	}
 	
-	public Product editProduct(String idProduct, String productName, Float productPrice, String description, ProductCategory productCategory, Integer stock, String productImage, Cart cart) throws Exception {
+	public List<Product> createlistProducts(Product product) throws Exception{
 		
-		Optional<Product> answer = productRepository.findById(idProduct);
-		
-		if(answer.isPresent()) {
-			
-			Product product = answer.get();
-			product.setProductName(productName);
-			product.setProductPrice(productPrice);
-			product.setDescription(description);
-			product.setProductCategory(productCategory);
-			product.setStock(stock);
-			product.setProductImage(productImage);
-			product.setCart(cart);
-			return productRepository.save(product);
-			
-		} else {
-			
-			throw new Exception("No se encontro el producto a editar.");
-			
-		}
-		
-	}
-	
-	public List<Product> listProducts(String idCart, String productName, Float productPrice, String description, ProductCategory productCategory, Integer stock, String productImage, Cart cart) throws Exception{
-		
-		Cart cart2 = cartService.findById(idCart);
-		
-		List<Product> listProducts = cart.getProductList();
-		listProducts.add(this.newProduct(productName, productPrice, description, productCategory, stock, productImage, cart2));
+		List<Product> listProducts = product.getCart().getProductList();
+		listProducts.add(this.saveProduct(product));
 		
 		return listProducts;
 	}
@@ -109,4 +83,28 @@ public class ProductService {
 	public List<Product> getByName(String q){		
 		return productRepository.getByName(q);
 	}
+	
+	/**public Product editProduct(String idProduct, String productName, Float productPrice, String description, ProductCategory productCategory, Integer stock, String productImage, Cart cart) throws Exception {
+	
+	Optional<Product> answer = productRepository.findById(idProduct);
+	
+	if(answer.isPresent()) {
+		
+		Product product = answer.get();
+		product.setProductName(productName);
+		product.setProductPrice(productPrice);
+		product.setDescription(description);
+		product.setProductCategory(productCategory);
+		product.setStock(stock);
+		product.setProductImage(productImage);
+		product.setCart(cart);
+		return productRepository.save(product);
+		
+	} else {
+		
+		throw new Exception("No se encontro el producto a editar.");
+		
+	}
+	
+}**/
 }

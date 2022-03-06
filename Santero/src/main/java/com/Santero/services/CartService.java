@@ -20,32 +20,36 @@ public class CartService {
 	@Autowired 
 	private ProductService productService;
 	
-	public Cart newCart(Float totalCost, User user, Order order) {
+	public Cart saveCart(Cart cart) {
+		return cartRepository.save(cart);
+	}
+	
+	public Cart saveCart(Float totalCost, Client client, Order order) {
 		
 		Cart cart = new Cart();
 		cart.setTotalCost(totalCost);
-		cart.setUser(user);
+		cart.setUser(client);
 		cart.setOrder(order);
 		
 		return cartRepository.save(cart);
 	}
 	
-	public void addProducts(String idCart, String productName, Float productPrice, String description, ProductCategory productCategory, Integer stock, String productImage, Cart cart) throws Exception {
-		List<Product> productList = productService.listProducts(idCart, productName, productPrice, description, productCategory, stock, productImage, cart);
+	public void addProducts(String idCart, Product product) throws Exception {
+		List<Product> productList = productService.createlistProducts(product);
 		
-		Cart cart2 = this.findById(idCart);
+		Cart cart = this.getById(idCart);
 		
-		cart2.setProductList(productList);
+		cart.setProductList(productList);
 		
-		cartRepository.save(cart2);
+		cartRepository.save(cart);
 	}
 	
 	public List<Product> listProducts(String idCart) throws Exception{
-		Cart cart = this.findById(idCart);
+		Cart cart = this.getById(idCart);
 		return cart.getProductList();
 	}
 	
-	public Cart findById(String idCart) throws Exception{
+	public Cart getById(String idCart) throws Exception{
 		
 		Optional<Cart> answer  = cartRepository.findById(idCart);
 		
@@ -54,6 +58,19 @@ public class CartService {
 		} else {
 			return answer.get();
 		}
+	}
+	
+	public void deleteCart(String idCart) throws Exception {
+		
+		Optional<Cart> answer = cartRepository.findById(idCart);
+		
+		if(answer.isPresent()) {
+			Cart cart = answer.get();
+			cartRepository.delete(cart);
+		} else {
+			throw new Exception("No se encontro el carro a borrar.");
+		}
+		
 	}
 	
 
