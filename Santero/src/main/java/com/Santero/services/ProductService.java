@@ -80,6 +80,14 @@ public class ProductService {
 		return productRepository.getByPrice(q);
 	}
 	
+	public List<Product> getByPriceASC(){		
+		return productRepository.getByPriceASC();
+	}
+	
+	public List<Product> getByPriceDESC(){		
+		return productRepository.getByPriceDESC();
+	}
+	
 	public List<Product> getByName(String q){		
 		return productRepository.getByName(q);
 	}

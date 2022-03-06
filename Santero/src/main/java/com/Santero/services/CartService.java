@@ -1,5 +1,6 @@
 package com.Santero.services;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import com.Santero.entities.Cart;
 import com.Santero.entities.Product;
 import com.Santero.enums.ProductCategory;
 import com.Santero.repositories.CartRepository;
+import com.Santero.repositories.ProductRepository;
 
 @Service
 public class CartService {
@@ -42,6 +44,21 @@ public class CartService {
 		cart.setProductList(productList);
 		
 		cartRepository.save(cart);
+	}
+	
+	public void removeProduct(String idCart, Product product) throws Exception{
+		List<Product> productList = this.listProducts(idCart);
+		Iterator<Product> ite = productList.iterator();
+		
+		while(ite.hasNext()) {
+			Product p = (Product) ite.next();
+			if (p.getIdProduct().equals(product.getIdProduct())) {
+				ite.remove();
+				Cart cart = this.getById(idCart);
+				cart.setProductList(productList);
+				cartRepository.save(cart);
+			}
+		}
 	}
 	
 	public List<Product> listProducts(String idCart) throws Exception{

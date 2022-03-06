@@ -64,4 +64,14 @@ public class ProductRestController {
 	public List<Product> findByPrice(@RequestParam(required = false) String q) {
 		return productService.getByPrice(q);
 	}
+	
+	@GetMapping("/findByPriceASC")
+	public List<Product> findByPriceASC() {
+		return productService.getByPriceASC();
+	}
+	
+	@GetMapping("/findByPriceDESC")
+	public List<Product> findByPriceDESC() {
+		return productService.getByPriceDESC();
+	}
 }

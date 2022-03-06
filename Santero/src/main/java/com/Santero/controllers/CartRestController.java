@@ -54,5 +54,10 @@ public class CartRestController {
 	public void addProducts(@PathVariable String idCart, @RequestBody Product product) throws Exception{
 		cartService.addProducts(idCart, product);		
 	}
+	
+	@PostMapping("/remove-products/{idCart}")
+	public void removeProducts(@PathVariable String idCart, @RequestBody Product product) throws Exception{
+		cartService.removeProduct(idCart, product);		
+	}
 
 }
