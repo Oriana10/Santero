@@ -52,7 +52,7 @@ public class Client {
 	private Long dni;
 	
 	@OneToMany(
-			mappedBy = "user",
+			mappedBy = "client",
 			cascade = CascadeType.ALL,
 			orphanRemoval = true
 			)
