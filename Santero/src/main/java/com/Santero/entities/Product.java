@@ -1,5 +1,6 @@
 package com.Santero.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,11 +19,15 @@ public class Product {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String idProduct;
+	@Column(nullable = false)
 	private String productName;
-	private String productPrice;
+	@Column(nullable = false)
+	private Float productPrice;
+	@Column(nullable = false)
 	private String description;
 	@Enumerated(EnumType.STRING)
 	private ProductCategory productCategory;
+	@Column(nullable = false)
 	private Integer stock;
 	private String productImage;
 	@OneToOne
@@ -32,7 +37,7 @@ public class Product {
 		
 	}
 
-	public Product(String idProduct, String productName, String productPrice, String description,
+	public Product(String idProduct, String productName, Float productPrice, String description,
 			ProductCategory productCategory, Integer stock, String productImage, Cart cart) {
 		super();
 		this.idProduct = idProduct;
@@ -61,11 +66,11 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public String getProductPrice() {
+	public Float getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(String productPrice) {
+	public void setProductPrice(Float productPrice) {
 		this.productPrice = productPrice;
 	}
 

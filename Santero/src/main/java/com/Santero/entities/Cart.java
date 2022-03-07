@@ -2,9 +2,11 @@ package com.Santero.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -16,20 +18,24 @@ public class Cart {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String idCart;
-	private List<String> productList;
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Product> productList;
 	private Float totalCost;
 	
 	@OneToOne
 	private Client client;
-	@OneToOne Order order;
+
+	@OneToOne 
+	private Order order;
+
 	
 	
 	public Cart() {
-		
 	}
 
 
-	public Cart(String idCart, List<String> productList, Float totalCost, Client client, Order order) {
+
+	public Cart(String idCart, List<Product> productList, Float totalCost, Client client, Order order) {
 		super();
 		this.idCart = idCart;
 		this.productList = productList;
@@ -49,12 +55,12 @@ public class Cart {
 	}
 
 
-	public List<String> getProductList() {
+	public List<Product> getProductList() {
 		return productList;
 	}
 
 
-	public void setProductList(List<String> productList) {
+	public void setProductList(List<Product> productList) {
 		this.productList = productList;
 	}
 
@@ -69,7 +75,8 @@ public class Cart {
 	}
 
 
-	public Client getUser() {
+
+	public Client getClient() {
 		return client;
 	}
 
