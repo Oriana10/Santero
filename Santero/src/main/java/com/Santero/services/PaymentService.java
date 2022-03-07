@@ -1,12 +1,18 @@
 package com.Santero.services;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.Santero.entities.Cart;
+import com.Santero.entities.Delivery;
 import com.Santero.entities.Payment;
+import com.Santero.enums.TypeOfPayment;
 import com.Santero.repositories.PaymentRepository;
 
 @Service
@@ -14,39 +20,68 @@ import com.Santero.repositories.PaymentRepository;
  * @author Nicolas
  */
 public class PaymentService {
+	
+	@Autowired
+	private Validator validator;
 
 	@Autowired
 	private PaymentRepository paymentRepository;
 	
 	// Create
+	// Este método guarda y retorna una orden como objeto. Se puede usar para crear o editar.
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public Payment save(Payment payment) throws Exception {
-		// Validation
-		
+		validator.notNullObject(payment, "Payment");
 		return paymentRepository.save(payment);
 	}
 	
-	// Delete
-	public void delete(Payment payment) throws Exception {
-		// Validation
+	// Este método obtiene todos los atributos de un pago y crea un objeto usando los mismos. Se puede usar para crear o editar.
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public Payment save(String expiryDate, String cardHolder, TypeOfPayment typeOfPayment, String discount, Float paymentAmount, Cart cart, Delivery delivery, Order order) throws Exception {
+		List<Object> objects = Arrays.asList(expiryDate, cardHolder, typeOfPayment, discount, paymentAmount, cart, delivery, order);
+		List<String> names = Arrays.asList("ExpiryDate", "CardHolder", "TypeOfPayment", "Discount", "PaymentAmount", "Cart", "Delivery", "Order");
+		validator.notNullObject(objects, names);
 		
+		Payment payment = new Payment();
+		payment.setExpiryDate(expiryDate);
+		payment.setCardHolder(cardHolder);
+		payment.setTypeOfPayment(typeOfPayment);
+		payment.setDiscount(discount);
+		payment.setPaymentAmount(paymentAmount);
+		payment.setCart(cart);
+		payment.setDelivery(delivery);
+		payment.setOrder(order);
+		
+		paymentRepository.save(payment);
+	}
+	
+	// Delete
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public void delete(Payment payment) throws Exception {
+		validator.notNullObject(payment, "Payment");
 		paymentRepository.delete(payment);
 	}
 	
 	// List-all
+	@Transactional(readOnly = true) // Transaccion de solo lectura (no va a cambiar el estado en nuestra base de datos)
 	public List<Payment> getAll() {
 		return paymentRepository.findAll();
 	}
 	
-	// getById
-	public Payment getById(String id) throws Exception{
-		Optional<Payment> result = paymentRepository.findById(id);
-		
-		if(!result.isPresent()) {
-			throw new Exception("Payment not found");
-		} else {
-			Payment payment = result.get();
-			return payment;
-		}
+	// findById
+	@Transactional(readOnly = true)
+	public Optional<Payment> findById(String id) throws Exception {
+		validator.notNullObject(id, "idPayment");
+		return paymentRepository.findById(id);
 	}
+	
+	// getById
+	@Transactional(readOnly = true)
+	public Payment getById(String id) throws Exception{
+		validator.notNullObject(id, "idPayment");
+		return paymentRepository.getById(id);
+	}
+	
+	
 	
 }
