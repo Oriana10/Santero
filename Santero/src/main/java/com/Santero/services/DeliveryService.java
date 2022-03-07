@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.Santero.entities.Delivery;
 import com.Santero.entities.Payment;
 import com.Santero.repositories.DeliveryRepository;
+import com.Santero.repositories.PaymentRepository;
 
 
 @Service
@@ -76,7 +77,7 @@ public class DeliveryService {
 	@Transactional(readOnly = true)
 	public Delivery getById(String id) throws Exception{
 		validator.notNullObject(id, "idDelivery");
-		return paymentRepository.getById(id);
+		return deliveryRepository.getById(id);
 	}
 
 }

@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Santero.entities.Cart;
-import com.Santero.entities.Order;
 import com.Santero.entities.Client;
+import com.Santero.entities.Order;
+import com.Santero.entities.Payment;
 import com.Santero.repositories.OrderRepository;
 
 @Service
@@ -53,7 +54,7 @@ public class OrderService {
 		order.setPayment(payment);
 		order.setUser(client);
 		
-		orderRepository.save(order);
+		return orderRepository.save(order);
 	}
 	
 	//Delete
