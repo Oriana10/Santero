@@ -24,13 +24,15 @@ public class Cart {
 	
 	@OneToOne
 	private Client client;
+
 	@OneToOne 
 	private Order order;
+
 	
 	
 	public Cart() {
-		
 	}
+
 
 
 	public Cart(String idCart, List<Product> productList, Float totalCost, Client client, Order order) {
@@ -71,6 +73,7 @@ public class Cart {
 	public void setTotalCost(Float totalCost) {
 		this.totalCost = totalCost;
 	}
+
 
 
 	public Client getClient() {
