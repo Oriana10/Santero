@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Santero.entities.Cart;
+import com.Santero.entities.Client;
+import com.Santero.entities.Order;
 import com.Santero.entities.Product;
-import com.Santero.enums.ProductCategory;
 import com.Santero.repositories.CartRepository;
-import com.Santero.repositories.ProductRepository;
 
 @Service
 public class CartService {
