@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.Santero.entities.Cart;
 import com.Santero.entities.Product;
 import com.Santero.enums.ProductCategory;
+import com.Santero.exceptions.CustomDataNotFoundException;
 import com.Santero.repositories.ProductRepository;
 
 @Service
@@ -35,7 +36,7 @@ public class ProductService {
 		return productRepository.save(product);
 	}
 	
-	public List<Product> createlistProducts(Product product) throws Exception{
+	public List<Product> createlistProducts(Product product) {
 		
 		List<Product> listProducts = product.getCart().getProductList();
 		listProducts.add(this.saveProduct(product));
@@ -43,7 +44,7 @@ public class ProductService {
 		return listProducts;
 	}
 	
-	public void deleteProduct(String idProduct) throws Exception {
+	public void deleteProduct(String idProduct) {
 		
 		Optional<Product> answer = productRepository.findById(idProduct);
 		
@@ -51,17 +52,17 @@ public class ProductService {
 			Product product = answer.get();
 			productRepository.delete(product);
 		} else {
-			throw new Exception("No se encontro el producto a borrar.");
+			throw new CustomDataNotFoundException("No se encontro el producto a borrar.");
 		}
 		
 	}
 	
-	public Product getById(String idProduct) throws Exception {
+	public Product getById(String idProduct) {
 		
 		Optional<Product> answer = productRepository.findById(idProduct);
 		
 		if(answer.isEmpty()) {
-			throw new Exception("No se encontro el producto a buscar");		
+			throw new CustomDataNotFoundException("No se encontro el producto a buscar");		
 		} else {
 			return answer.get();
 		}

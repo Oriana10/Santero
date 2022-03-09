@@ -32,13 +32,13 @@ public class PaymentRestController {
 	}
 	
 	@PostMapping("/save")
-	public ResponseEntity<Payment> save(@RequestBody Payment payment) throws Exception{ //Transformo en un objeto los datos recibidos
+	public ResponseEntity<Payment> save(@RequestBody Payment payment){ //Transformo en un objeto los datos recibidos
 		Payment obj = paymentService.save(payment); //Guardo al Payment que obtuve
 		return new ResponseEntity<Payment>(obj, HttpStatus.OK); //Retorno un ResponseEntity igual al Payment guardado y un Status 200(OK)
 	}
 	
 	@GetMapping("/delete/{id}")
-	public ResponseEntity<Payment> delete(@PathVariable("idPayment") String idPayment) throws Exception{
+	public ResponseEntity<Payment> delete(@PathVariable("idPayment") String idPayment) {
 		Payment obj = paymentService.getById(idPayment);
 		if(obj != null) {//Si Payment no es nulo lo borro
 			paymentService.delete(obj);
@@ -51,7 +51,7 @@ public class PaymentRestController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Payment> read(@PathVariable("idPayment") String idPayment) throws Exception{
+	public ResponseEntity<Payment> read(@PathVariable("idPayment") String idPayment) {
 		Optional<Payment> obj = paymentService.findById(idPayment);
 		
 		if(!obj.isPresent()) {

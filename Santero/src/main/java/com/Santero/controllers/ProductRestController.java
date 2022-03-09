@@ -35,7 +35,7 @@ public class ProductRestController {
 	}
 		
 	@GetMapping("/delete/{idProduct}")
-	public ResponseEntity<Product> deleteProduct(@PathVariable String idProduct) throws Exception{
+	public ResponseEntity<Product> deleteProduct(@PathVariable String idProduct) {
 		Product product = productService.getById(idProduct);
 		if(product != null) {
 			productService.deleteProduct(idProduct);
@@ -46,7 +46,7 @@ public class ProductRestController {
 	}
 	
 	@GetMapping("/findById/{idProduct}")
-	public Product findById(@PathVariable String idProduct) throws Exception {
+	public Product findById(@PathVariable String idProduct) {
 		return productService.getById(idProduct);
 	}
 	

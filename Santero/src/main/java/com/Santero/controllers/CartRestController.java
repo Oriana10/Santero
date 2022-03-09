@@ -30,7 +30,7 @@ public class CartRestController {
 	}
 	
 	@GetMapping("/delete/{idCart}")
-	public ResponseEntity<Cart> deleteCart(@PathVariable String idCart) throws Exception{
+	public ResponseEntity<Cart> deleteCart(@PathVariable String idCart){
 		Cart cart = cartService.getById(idCart);
 		if (cart != null) {
 			cartService.deleteCart(idCart);
@@ -41,22 +41,22 @@ public class CartRestController {
 	}
 	
 	@GetMapping("/findById/{idCart}")
-	public Cart findById(@PathVariable String idCart) throws Exception{
+	public Cart findById(@PathVariable String idCart) {
 		return cartService.getById(idCart);
 	}
 	
 	@GetMapping("/list-products-in-it/{idCart}")
-	public List<Product> listProducts(@PathVariable String idCart) throws Exception{
+	public List<Product> listProducts(@PathVariable String idCart) {
 		return cartService.listProducts(idCart);
 	}
 	
 	@PostMapping("/add-products/{idCart}")
-	public void addProducts(@PathVariable String idCart, @RequestBody Product product) throws Exception{
+	public void addProducts(@PathVariable String idCart, @RequestBody Product product){
 		cartService.addProducts(idCart, product);		
 	}
 	
 	@PostMapping("/remove-products/{idCart}")
-	public void removeProducts(@PathVariable String idCart, @RequestBody Product product) throws Exception{
+	public void removeProducts(@PathVariable String idCart, @RequestBody Product product){
 		cartService.removeProduct(idCart, product);		
 	}
 

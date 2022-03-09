@@ -31,17 +31,17 @@ public class PaymentService {
 	// Create
 	// Este método guarda y retorna una orden como objeto. Se puede usar para crear o editar.
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public Payment save(Payment payment) throws Exception {
+	public Payment save(Payment payment) {
 		validator.notNullObject(payment, "Payment");
 		return paymentRepository.save(payment);
 	}
 	
 	// Este método obtiene todos los atributos de un pago y crea un objeto usando los mismos. Se puede usar para crear o editar.
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public Payment save(String expiryDate, String cardHolder, TypeOfPayment typeOfPayment, String discount, Float paymentAmount, Cart cart, Delivery delivery, Order order) throws Exception {
+	public Payment save(String expiryDate, String cardHolder, TypeOfPayment typeOfPayment, String discount, Float paymentAmount, Cart cart, Delivery delivery, Order order) {
 		List<Object> objects = Arrays.asList(expiryDate, cardHolder, typeOfPayment, discount, paymentAmount, cart, delivery, order);
 		List<String> names = Arrays.asList("ExpiryDate", "CardHolder", "TypeOfPayment", "Discount", "PaymentAmount", "Cart", "Delivery", "Order");
-		validator.notNullObject(objects, names);
+		validator.notNullObjects(objects, names);
 		
 		Payment payment = new Payment();
 		payment.setExpiryDate(expiryDate);
@@ -53,12 +53,12 @@ public class PaymentService {
 		payment.setDelivery(delivery);
 		payment.setOrder(order);
 		
-		paymentRepository.save(payment);
+		return paymentRepository.save(payment);
 	}
 	
 	// Delete
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public void delete(Payment payment) throws Exception {
+	public void delete(Payment payment) {
 		validator.notNullObject(payment, "Payment");
 		paymentRepository.delete(payment);
 	}
@@ -71,14 +71,14 @@ public class PaymentService {
 	
 	// findById
 	@Transactional(readOnly = true)
-	public Optional<Payment> findById(String id) throws Exception {
+	public Optional<Payment> findById(String id) {
 		validator.notNullObject(id, "idPayment");
 		return paymentRepository.findById(id);
 	}
 	
 	// getById
 	@Transactional(readOnly = true)
-	public Payment getById(String id) throws Exception{
+	public Payment getById(String id) {
 		validator.notNullObject(id, "idPayment");
 		return paymentRepository.getById(id);
 	}

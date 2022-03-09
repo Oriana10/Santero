@@ -49,7 +49,7 @@ public class ClientRestController {
 	 * Este método retorna el usuario guardado con un código 200
 	 */
 	@GetMapping("/save")
-	public ResponseEntity<Client> save(@RequestBody Client client) throws Exception{//Transformo en un objeto los datos recibidos
+	public ResponseEntity<Client> save(@RequestBody Client client) {//Transformo en un objeto los datos recibidos
 		Client obj = clientService.save(client); //Guardo al Client que obtuve
 		return new ResponseEntity<Client>(obj, HttpStatus.OK);//Retorno un ResponseEntity igual al Client guardado y un Status 200(OK)
 	}
@@ -59,7 +59,7 @@ public class ClientRestController {
 	 * Este método retorna el usuario eliminado. Puede dar un código 200 en caso de que se elimine correctamente o un 500 en caso de que no se pueda eliminar
 	 */
 	@PostMapping("/delete/{id}")
-	public ResponseEntity<Client> delete(@PathVariable("id") String id) throws Exception{
+	public ResponseEntity<Client> delete(@PathVariable("id") String id) {
 		Client client = clientService.getById(id);
 		if(client != null) {//Si Client no es nulo lo borro
 			clientService.delete(client);

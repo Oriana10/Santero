@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Santero.entities.Client;
 import com.Santero.entities.Order;
 import com.Santero.services.OrderService;
 
@@ -43,7 +42,7 @@ public class OrderRestController {
 	 * @throws Exception 
 	 */
 	@GetMapping("/find/{id}")
-	public Order find(@PathVariable String id) throws Exception {
+	public Order find(@PathVariable String id) {
 		return orderService.getById(id);
 	}
 	
@@ -52,7 +51,7 @@ public class OrderRestController {
 	 * Este método retorna la orden guardada con un código 200
 	 */
 	@GetMapping("/save/{id}")
-	public ResponseEntity<Order> save(@RequestBody Order Order) throws Exception{//Transformo en un objeto los datos recibidos
+	public ResponseEntity<Order> save(@RequestBody Order Order) {//Transformo en un objeto los datos recibidos
 		Order obj = orderService.save(Order); //Guardo la Order que obtuve
 		return new ResponseEntity<Order>(obj, HttpStatus.OK);//Retorno un ResponseEntity igual al Order guardado y un Status 200(OK)
 	}
@@ -62,7 +61,7 @@ public class OrderRestController {
 	 * Este método retorna el Order eliminado. Puede dar un código 200 en caso de que se elimine correctamente o un 500 en caso de que no se pueda eliminar
 	 */
 	@PostMapping("/delete/{id}")
-	public ResponseEntity<Order> delete(@PathVariable("id") String id) throws Exception{
+	public ResponseEntity<Order> delete(@PathVariable("id") String id) {
 		Order Order = orderService.getById(id);
 		if(Order != null) {//Si Order no es nulo lo borro
 			orderService.delete(Order);
