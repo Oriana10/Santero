@@ -48,14 +48,14 @@ public class Payment {
 	private Delivery delivery;
 	
 	@OneToOne
-	private Order order;
+	private ClientOrder ClientOrder;
 
 	public Payment() {
 		super();
 	}
 
 	public Payment(String idPayment, String expiryDate, String cardHolder, TypeOfPayment typeOfPayment, String discount,
-			Float paymentAmount, Cart cart, Delivery delivery, Order order) {
+			Float paymentAmount, Cart cart, Delivery delivery, ClientOrder ClientOrder) {
 		super();
 		this.idPayment = idPayment;
 		this.expiryDate = expiryDate;
@@ -65,7 +65,7 @@ public class Payment {
 		this.paymentAmount = paymentAmount;
 		this.cart = cart;
 		this.delivery = delivery;
-		this.order = order;
+		this.ClientOrder = ClientOrder;
 	}
 
 	public String getIdPayment() {
@@ -132,12 +132,12 @@ public class Payment {
 		this.delivery = delivery;
 	}
 
-	public Order getOrder() {
-		return order;
+	public ClientOrder getClientOrder() {
+		return ClientOrder;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setClientOrder(ClientOrder ClientOrder) {
+		this.ClientOrder = ClientOrder;
 	}	
 		
 }

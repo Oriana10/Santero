@@ -8,31 +8,31 @@ import org.springframework.stereotype.Service;
 
 import com.Santero.entities.Cart;
 import com.Santero.entities.Client;
-import com.Santero.entities.Order;
+import com.Santero.entities.ClientOrder;
 import com.Santero.entities.Payment;
-import com.Santero.repositories.OrderRepository;
+import com.Santero.repositories.ClientOrderRepository;
 
 @Service
 /**
  * @author Lamberti
  */
-public class OrderService {
+public class ClientOrderService {
 
 	@Autowired
 	private Validator validator;
 	
 	@Autowired
-	private OrderRepository orderRepository;
+	private ClientOrderRepository ClientOrderRepository;
 	
 	//Create
 	/**
 	 * @author Franco Lamberti
 	 * Este método guarda y retorna una orden como objeto. Se puede usar para crear o editar.
-	 * @param order - Es la orden a guardar
+	 * @param ClientOrder - Es la orden a guardar
 	 */
-	public Order save(Order order) {
-		validator.notNullObject(order, "Order");
-		return orderRepository.save(order);
+	public ClientOrder save(ClientOrder ClientOrder) {
+		validator.notNullObject(ClientOrder, "ClientOrder");
+		return ClientOrderRepository.save(ClientOrder);
 	}
 	
 	/**
@@ -43,33 +43,33 @@ public class OrderService {
 	 * @param client
 	 * @param payment
 	 */
-	public Order save(Long number, Cart cart, Client client, Payment payment) {
+	public ClientOrder save(Long number, Cart cart, Client client, Payment payment) {
 		List<Object> objects = Arrays.asList(number, cart, client, payment);
 		List<String> names = Arrays.asList("Number", "Cart", "Client", "Payment");
 		validator.notNullObjects(objects, names);
 		
-		Order order = new Order();
-		order.setCart(cart);
-		order.setNumber(number);
-		order.setPayment(payment);
-		order.setUser(client);
+		ClientOrder ClientOrder = new ClientOrder();
+		ClientOrder.setCart(cart);
+		ClientOrder.setNumber(number);
+		ClientOrder.setPayment(payment);
+		ClientOrder.setUser(client);
 		
-		return orderRepository.save(order);
+		return ClientOrderRepository.save(ClientOrder);
 	}
 	
 	//Delete
-	public void delete(Order order) {
-		validator.notNullObject(order, "Order");
-		orderRepository.delete(order);
+	public void delete(ClientOrder ClientOrder) {
+		validator.notNullObject(ClientOrder, "ClientOrder");
+		ClientOrderRepository.delete(ClientOrder);
 	}
 	
 	//Getters
-	public List<Order> getAll(){
-		return orderRepository.findAll();
+	public List<ClientOrder> getAll(){
+		return ClientOrderRepository.findAll();
 	}
 	
-	public Order getById(String id) {
+	public ClientOrder getById(String id) {
 		validator.notNullObject(id, "Id");
-		return orderRepository.getById(id);
+		return ClientOrderRepository.getById(id);
 	}
 }

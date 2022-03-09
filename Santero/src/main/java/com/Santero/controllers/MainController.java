@@ -7,8 +7,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.Santero.services.ClientOrderService;
 import com.Santero.services.ClientService;
-import com.Santero.services.OrderService;
 import com.Santero.services.PaymentService;
 import com.Santero.services.ProductService;
 
@@ -26,7 +26,7 @@ public class MainController {
 	private ProductService productService;
 	
 	@Autowired
-	private OrderService orderService;
+	private ClientOrderService orderService;
 	
 	@GetMapping()
 	public String index() {

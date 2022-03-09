@@ -1,5 +1,5 @@
 package com.Santero.services;
-/**
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,4 +53,4 @@ public class MyMailSender {
 		
 	}
 	
-}**/
+}

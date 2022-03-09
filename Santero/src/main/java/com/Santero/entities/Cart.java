@@ -26,16 +26,12 @@ public class Cart {
 	private Client client;
 
 	@OneToOne 
-	private Order order;
+	private ClientOrder order;
 
-	
-	
 	public Cart() {
 	}
 
-
-
-	public Cart(String idCart, List<Product> productList, Float totalCost, Client client, Order order) {
+	public Cart(String idCart, List<Product> productList, Float totalCost, Client client, ClientOrder order) {
 		super();
 		this.idCart = idCart;
 		this.productList = productList;
@@ -86,12 +82,12 @@ public class Cart {
 	}
 
 
-	public Order getOrder() {
+	public ClientOrder getClientOrder() {
 		return order;
 	}
 
 
-	public void setOrder(Order order) {
+	public void setClientOrder(ClientOrder order) {
 		this.order = order;
 	}	
 		
