@@ -11,6 +11,7 @@ import com.Santero.entities.Cart;
 import com.Santero.entities.Client;
 import com.Santero.entities.Order;
 import com.Santero.entities.Product;
+import com.Santero.exceptions.CustomDataNotFoundException;
 import com.Santero.repositories.CartRepository;
 
 @Service
@@ -36,7 +37,7 @@ public class CartService {
 		return cartRepository.save(cart);
 	}
 	
-	public void addProducts(String idCart, Product product) throws Exception {
+	public void addProducts(String idCart, Product product)  {
 		List<Product> productList = productService.createlistProducts(product);
 		
 		Cart cart = this.getById(idCart);
@@ -46,7 +47,7 @@ public class CartService {
 		cartRepository.save(cart);
 	}
 	
-	public void removeProduct(String idCart, Product product) throws Exception{
+	public void removeProduct(String idCart, Product product) {
 		List<Product> productList = this.listProducts(idCart);
 		Iterator<Product> ite = productList.iterator();
 		
@@ -61,23 +62,23 @@ public class CartService {
 		}
 	}
 	
-	public List<Product> listProducts(String idCart) throws Exception{
+	public List<Product> listProducts(String idCart) {
 		Cart cart = this.getById(idCart);
 		return cart.getProductList();
 	}
 	
-	public Cart getById(String idCart) throws Exception{
+	public Cart getById(String idCart) {
 		
 		Optional<Cart> answer  = cartRepository.findById(idCart);
 		
 		if (answer.isEmpty()) {
-			throw new Exception("No se encontró el carro");
+			throw new CustomDataNotFoundException("No se encontró el carro");
 		} else {
 			return answer.get();
 		}
 	}
 	
-	public void deleteCart(String idCart) throws Exception {
+	public void deleteCart(String idCart) {
 		
 		Optional<Cart> answer = cartRepository.findById(idCart);
 		
@@ -85,7 +86,7 @@ public class CartService {
 			Cart cart = answer.get();
 			cartRepository.delete(cart);
 		} else {
-			throw new Exception("No se encontro el carro a borrar.");
+			throw new CustomDataNotFoundException("No se encontro el carro a borrar.");
 		}
 		
 	}

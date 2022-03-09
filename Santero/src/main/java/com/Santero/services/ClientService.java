@@ -13,7 +13,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -22,6 +21,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.Santero.entities.Cart;
 import com.Santero.entities.Client;
 import com.Santero.enums.Role;
+import com.Santero.exceptions.CustomDataNotFoundException;
 import com.Santero.repositories.ClientRepository;
 
 @Service
@@ -44,7 +44,7 @@ public class ClientService implements UserDetailsService {
 	 *         necesidad de crear otro método que sea igual pero que retorne void.
 	 * @throws Exception
 	 */
-	public Client save(Client client) throws Exception {
+	public Client save(Client client) {
 		validator.notNullObject(client, "Client");
 		return clientRepository.save(client);
 	}
@@ -64,7 +64,7 @@ public class ClientService implements UserDetailsService {
 	 * @param cart
 	 */
 	public Client save(String name, String surname, Role role, String password, String email, Long phoneNumber,
-			String address, Long dni, Cart cart) throws Exception {
+			String address, Long dni, Cart cart) {
 		List<Object> objects = Arrays.asList(name, surname, role, password, email, phoneNumber, address, dni, cart);
 		List<String> names = Arrays.asList("Name", "Surname", "Role", "Password", "Email", "PhoneNumber", "Address",
 				"dni", "Cart");
@@ -86,7 +86,7 @@ public class ClientService implements UserDetailsService {
 	}
 
 	// Delete
-	public void delete(Client client) throws Exception {
+	public void delete(Client client) {
 		validator.notNullObject(client, "Client");
 		clientRepository.delete(client);
 	}
@@ -97,7 +97,13 @@ public class ClientService implements UserDetailsService {
 	}
 
 	public Client getById(String id) {
-		return clientRepository.getById(id);
+		Optional<Client> answer = clientRepository.findById(id);
+		
+		if (answer.isEmpty()) {
+			throw new CustomDataNotFoundException("No se encontró el cliente");
+		} else {
+			return answer.get();
+		}
 	}
 
 	public Client getByEmail(String email) {
@@ -106,13 +112,13 @@ public class ClientService implements UserDetailsService {
 
 	
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) {
 		Optional<Client> opt = clientRepository.getOptionalByEmail(email);//Obtengo un optional del usuario segun su email
 		if (opt.isPresent()) {//Si existe un usuario con este mail...
 			Client client = opt.get();//Lo obtengo
 
 			// Creación de permisos
-			List<GrantedAuthority> authorities = new ArrayList();
+			List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
 			GrantedAuthority authority1 = new SimpleGrantedAuthority( Role.CLIENT.toString() ); //Creo una authority que sea igual a mi rol CLIENT, como no es string le hago un toString
 			authorities.add(authority1);//Le setteo este permiso a la lista de authorities

@@ -30,7 +30,7 @@ public class OrderService {
 	 * Este método guarda y retorna una orden como objeto. Se puede usar para crear o editar.
 	 * @param order - Es la orden a guardar
 	 */
-	public Order save(Order order) throws Exception {
+	public Order save(Order order) {
 		validator.notNullObject(order, "Order");
 		return orderRepository.save(order);
 	}
@@ -43,7 +43,7 @@ public class OrderService {
 	 * @param client
 	 * @param payment
 	 */
-	public Order save(Long number, Cart cart, Client client, Payment payment) throws Exception {
+	public Order save(Long number, Cart cart, Client client, Payment payment) {
 		List<Object> objects = Arrays.asList(number, cart, client, payment);
 		List<String> names = Arrays.asList("Number", "Cart", "Client", "Payment");
 		validator.notNullObjects(objects, names);
@@ -58,7 +58,7 @@ public class OrderService {
 	}
 	
 	//Delete
-	public void delete(Order order) throws Exception {
+	public void delete(Order order) {
 		validator.notNullObject(order, "Order");
 		orderRepository.delete(order);
 	}
@@ -68,7 +68,7 @@ public class OrderService {
 		return orderRepository.findAll();
 	}
 	
-	public Order getById(String id) throws Exception{
+	public Order getById(String id) {
 		validator.notNullObject(id, "Id");
 		return orderRepository.getById(id);
 	}

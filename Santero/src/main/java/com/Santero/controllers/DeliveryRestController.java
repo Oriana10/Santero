@@ -33,13 +33,13 @@ public class DeliveryRestController {
 	}
 	
 	@PostMapping("/save")
-	public ResponseEntity<Delivery> save(@RequestBody Delivery delivery) throws Exception{ //Transformo en un objeto los datos recibidos
+	public ResponseEntity<Delivery> save(@RequestBody Delivery delivery) { //Transformo en un objeto los datos recibidos
 		Delivery obj = deliveryService.save(delivery); //Guardo al Delivery que obtuve
 		return new ResponseEntity<Delivery>(obj, HttpStatus.OK); //Retorno un ResponseEntity igual al Delivery guardado y un Status 200(OK)
 	}
 	
 	@GetMapping("/delete/{id}")
-	public ResponseEntity<Delivery> delete(@PathVariable("idDelivery") String idDelivery) throws Exception{
+	public ResponseEntity<Delivery> delete(@PathVariable("idDelivery") String idDelivery) {
 		Delivery obj = deliveryService.getById(idDelivery);
 		if(obj != null) {//Si Delivery no es nulo lo borro
 			deliveryService.delete(obj);
@@ -52,7 +52,7 @@ public class DeliveryRestController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Delivery> read(@PathVariable("idDelivery") String idDelivery) throws Exception{
+	public ResponseEntity<Delivery> read(@PathVariable("idDelivery") String idDelivery) {
 		Optional<Delivery> obj = deliveryService.findById(idDelivery);
 		
 		if(!obj.isPresent()) {

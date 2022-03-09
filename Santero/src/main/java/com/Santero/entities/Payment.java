@@ -49,5 +49,95 @@ public class Payment {
 	
 	@OneToOne
 	private Order order;
-	
+
+	public Payment() {
+		super();
+	}
+
+	public Payment(String idPayment, String expiryDate, String cardHolder, TypeOfPayment typeOfPayment, String discount,
+			Float paymentAmount, Cart cart, Delivery delivery, Order order) {
+		super();
+		this.idPayment = idPayment;
+		this.expiryDate = expiryDate;
+		this.cardHolder = cardHolder;
+		this.typeOfPayment = typeOfPayment;
+		this.discount = discount;
+		this.paymentAmount = paymentAmount;
+		this.cart = cart;
+		this.delivery = delivery;
+		this.order = order;
+	}
+
+	public String getIdPayment() {
+		return idPayment;
+	}
+
+	public void setIdPayment(String idPayment) {
+		this.idPayment = idPayment;
+	}
+
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+
+	public String getCardHolder() {
+		return cardHolder;
+	}
+
+	public void setCardHolder(String cardHolder) {
+		this.cardHolder = cardHolder;
+	}
+
+	public TypeOfPayment getTypeOfPayment() {
+		return typeOfPayment;
+	}
+
+	public void setTypeOfPayment(TypeOfPayment typeOfPayment) {
+		this.typeOfPayment = typeOfPayment;
+	}
+
+	public String getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(String discount) {
+		this.discount = discount;
+	}
+
+	public Float getPaymentAmount() {
+		return paymentAmount;
+	}
+
+	public void setPaymentAmount(Float paymentAmount) {
+		this.paymentAmount = paymentAmount;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	public Delivery getDelivery() {
+		return delivery;
+	}
+
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}	
+		
 }

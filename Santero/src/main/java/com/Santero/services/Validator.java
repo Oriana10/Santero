@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.Santero.exceptions.CustomDataNotFoundException;
+
 @Service
 /**
  * @author Franco Lamberti
@@ -17,9 +19,9 @@ public class Validator {
 	 * @param value - Es el elemento que queremos validar que no sea nulo
 	 * @param name - Es el nombre con el que queremos que aparezca en consola si llega a lanzar una excepción. 
 	 */
-	public void notNullObject(Object value, String name) throws Exception {
+	public void notNullObject(Object value, String name) {
 		if(value == null)
-			throw new Exception(name + " can't be null");
+			throw new CustomDataNotFoundException(name + " can't be null");
 	}
 	
 	/**
@@ -28,10 +30,10 @@ public class Validator {
 	 * @param values - Son todos los objetos que queremos validar
 	 * @param names - Son los nombres de cada objeto que queremos validar. Deben coincidir con el indice de "values".
 	 */
-	public void notNullObjects(List<Object> values, List<String> names) throws Exception {
+	public void notNullObjects(List<Object> values, List<String> names) {
 		for(int i = 0; i < values.size(); i++) {
 			if(values.get(i) == null)
-				throw new Exception(names.get(i) + " can't be null");
+				throw new CustomDataNotFoundException(names.get(i) + " can't be null");
 		}
 		
 	}

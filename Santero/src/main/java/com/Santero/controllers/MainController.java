@@ -35,7 +35,7 @@ public class MainController {
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/admin")
-	public String adminPanel(ModelMap modelMap) throws Exception{
+	public String adminPanel(ModelMap modelMap){
 		try {
 			modelMap.put("list-clients", clientService.getAll());
 			modelMap.put("accounting", paymentService.getAll());
