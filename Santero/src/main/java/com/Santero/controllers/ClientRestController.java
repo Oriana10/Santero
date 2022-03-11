@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Santero.entities.Client;
-import com.Santero.entities.Product;
 import com.Santero.services.ClientService;
-import com.Santero.services.MyMailSender;
 
 @RestController
 @RequestMapping("/client")
