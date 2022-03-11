@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.Santero.entities.Cart;
 import com.Santero.entities.Client;
-import com.Santero.entities.Order;
+import com.Santero.entities.ClientOrder;
 import com.Santero.entities.Product;
 import com.Santero.exceptions.CustomDataNotFoundException;
 import com.Santero.repositories.CartRepository;
@@ -27,12 +27,12 @@ public class CartService {
 		return cartRepository.save(cart);
 	}
 	
-	public Cart saveCart(Float totalCost, Client client, Order order) {
+	public Cart saveCart(Float totalCost, Client client, ClientOrder order) {
 		
 		Cart cart = new Cart();
 		cart.setTotalCost(totalCost);
 		cart.setUser(client);
-		cart.setOrder(order);
+		cart.setClientOrder(order);
 		
 		return cartRepository.save(cart);
 	}

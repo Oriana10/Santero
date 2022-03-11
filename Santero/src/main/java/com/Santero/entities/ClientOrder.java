@@ -14,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 /**
  * @author Lamberti
  */
-public class Order {
+public class ClientOrder {
 
 	@Id
 	@GeneratedValue(generator = "uuid")
@@ -28,15 +28,16 @@ public class Order {
 	private Cart cart;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "client")//Cambio realizado
 	private Client client;
 	
 	@OneToOne
 	private Payment payment;
 
-	public Order() {}
+	public ClientOrder() {}
 	
-	public Order(String id, Long number, Cart cart, Client client, Payment payment) {
+
+	public ClientOrder(String id, Long number, Cart cart, Client client, Payment payment) {
 		super();
 		this.id = id;
 		this.number = number;

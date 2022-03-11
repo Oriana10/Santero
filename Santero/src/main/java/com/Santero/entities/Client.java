@@ -56,7 +56,7 @@ public class Client {
 			cascade = CascadeType.ALL,
 			orphanRemoval = true
 			)
-	private List<Order> orders;
+	private List<ClientOrder> ClientOrders;
 	
 	@OneToOne
 	private Cart cart;
@@ -64,7 +64,7 @@ public class Client {
 	public Client(){}
 
 	public Client(String id, String name, String surname, Role role, String password, String email, Long phoneNumber,
-			String address, Long dni, List<Order> orders, Cart cart) {
+			String address, Long dni, List<ClientOrder> ClientOrders, Cart cart) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -75,7 +75,7 @@ public class Client {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.dni = dni;
-		this.orders = orders;
+		this.ClientOrders = ClientOrders;
 		this.cart = cart;
 	}
 
@@ -159,12 +159,12 @@ public class Client {
 		this.cart = cart;
 	}
 
-	public List<Order> getOrders() {
-		return orders;
+	public List<ClientOrder> getClientOrders() {
+		return ClientOrders;
 	}
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+	public void setClientOrders(List<ClientOrder> ClientOrders) {
+		this.ClientOrders = ClientOrders;
 	}
 	
 }
