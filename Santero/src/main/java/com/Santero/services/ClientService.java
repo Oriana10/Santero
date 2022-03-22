@@ -99,7 +99,7 @@ public class ClientService implements UserDetailsService {
 	public Client getById(String id) {
 		Optional<Client> answer = clientRepository.findById(id);
 		
-		if (answer.isEmpty()) {
+		if (!answer.isPresent()) {
 			throw new CustomDataNotFoundException("No se encontró el cliente");
 		} else {
 			return answer.get();

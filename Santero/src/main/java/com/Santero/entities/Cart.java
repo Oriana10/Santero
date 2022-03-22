@@ -18,8 +18,10 @@ public class Cart {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String idCart;
+	
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Product> productList;
+	
 	private Float totalCost;
 	
 	@OneToOne

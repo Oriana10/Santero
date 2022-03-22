@@ -38,12 +38,11 @@ public class CartService {
 	}
 	
 	public void addProducts(String idCart, Product product)  {
-		List<Product> productList = productService.createlistProducts(product);
-		
-		Cart cart = this.getById(idCart);
-		
-		cart.setProductList(productList);
-		
+		List<Product> productList = productService.createlistProducts(product, idCart);
+		System.out.println("Service: El id cart es: " + idCart);
+		Cart cart = this.getById(idCart);	
+		System.out.println("Service2: El id cart es: " + cart.getIdCart());
+		cart.setProductList(productList);		
 		cartRepository.save(cart);
 	}
 	
@@ -71,7 +70,7 @@ public class CartService {
 		
 		Optional<Cart> answer  = cartRepository.findById(idCart);
 		
-		if (answer.isEmpty()) {
+		if (!answer.isPresent()) {
 			throw new CustomDataNotFoundException("No se encontró el carro");
 		} else {
 			return answer.get();
