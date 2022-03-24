@@ -52,6 +52,7 @@ public class CartRestController {
 	
 	@PostMapping("/add-products/{idCart}")
 	public void addProducts(@PathVariable String idCart, @RequestBody Product product){
+		System.out.println("El id cart es: "+ idCart);
 		cartService.addProducts(idCart, product);		
 	}
 	

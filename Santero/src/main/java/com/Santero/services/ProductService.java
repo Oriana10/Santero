@@ -10,6 +10,7 @@ import com.Santero.entities.Cart;
 import com.Santero.entities.Product;
 import com.Santero.enums.ProductCategory;
 import com.Santero.exceptions.CustomDataNotFoundException;
+import com.Santero.repositories.CartRepository;
 import com.Santero.repositories.ProductRepository;
 
 @Service
@@ -17,6 +18,9 @@ public class ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private CartRepository cartRepository;
 	
 	public Product saveProduct(Product product) {
 		return productRepository.save(product);
@@ -36,10 +40,10 @@ public class ProductService {
 		return productRepository.save(product);
 	}
 	
-	public List<Product> createlistProducts(Product product) {
-		
-		List<Product> listProducts = product.getCart().getProductList();
-		listProducts.add(this.saveProduct(product));
+	public List<Product> createlistProducts(Product product, String idCart) {
+		System.out.println("Product cart:" + product.getCart());
+		List<Product> listProducts = cartRepository.getById(idCart).getProductList();
+		listProducts.add(product);
 		
 		return listProducts;
 	}
@@ -61,7 +65,7 @@ public class ProductService {
 		
 		Optional<Product> answer = productRepository.findById(idProduct);
 		
-		if(answer.isEmpty()) {
+		if(!answer.isPresent()) {
 			throw new CustomDataNotFoundException("No se encontro el producto a buscar");		
 		} else {
 			return answer.get();
