@@ -13,15 +13,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.Santero.enums.ProductCategory;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Data
-
 public class Product {
 	
 	@Id
