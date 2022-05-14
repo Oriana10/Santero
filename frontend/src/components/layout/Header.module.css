@@ -1,4 +1,48 @@
 .header {
+  position: relative;
   display: flex;
   justify-content: space-between;
+  background-color: var(--bg-color);
+  padding: 64px 16px 24px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1284px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.section {
+  width: 100%;
+}
+.h1 {
+  height: 200px;
+  display: flex;
+  align-items: center;
+}
+.h1,
+.h2 {
+  margin: 0;
+  width: 350px;
+}
+.foodTitle {
+  margin: 1rem 0;
+  background-color: var(--bg-secondary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pastaLogo {
+  width: 300px;
+}
+
+@media only screen and (min-width: 720px) {
+  .h1 {
+    width: 300px;
+  }
+  .section {
+    font-size: 2rem;
+  }
 }
