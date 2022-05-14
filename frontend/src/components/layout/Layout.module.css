@@ -1,12 +1,12 @@
 .wrapper {
   min-height: 100%;
-  padding: 0 1.2rem;
+  padding: 0;
 }
 
 .container {
   margin: 0 auto;
   max-width: 1024px;
-  padding: 0;
+  padding: 0 1.2rem;
 }
 
 .main {

@@ -1,0 +1,14 @@
+/** Colors */
+:root {
+  --bg-color: #ececec;
+  --bg-primary-color: #dd0b0e;
+  --bg-secondary-color: #ffe086;
+
+  --secondary-color: #ffffff;
+  --contrast-color: #000000;
+
+  --text-main-color: #5e0300;
+  --text-secondary-color: #9a0601; /** on bg --bg-secondary */
+  --text-placeholder-color: #7b7b7b;
+  --font-family: 'Poppins', sans-serif;
+}
