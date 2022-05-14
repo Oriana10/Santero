@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import store from './store/store';
 
+import './assets/_variables.css';
 import './index.css';
 
 ReactDOM.render(
