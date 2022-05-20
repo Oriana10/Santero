@@ -1,0 +1,16 @@
+.ubication {
+  width: 250px;
+  background-color: #ffe086;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+.button {
+  background-color: #dd0b0e;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  margin-top: 1rem;
+  padding: 1rem;
+}

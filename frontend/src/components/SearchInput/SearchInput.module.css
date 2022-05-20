@@ -1,0 +1,26 @@
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.inputContact {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.input {
+  background-color: #eeee;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.8rem;
+}
+.input:focus {
+  outline: gray;
+}
+
+@media only screen and (min-width: 720px) {
+  .inputContact {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
