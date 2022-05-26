@@ -16,6 +16,7 @@
 
 .section {
   width: 100%;
+  color: var(--text-main-color);
 }
 .h1 {
   height: 200px;
@@ -25,11 +26,13 @@
 .h1,
 .h2 {
   margin: 0;
-  width: 350px;
+  max-width: 350px;
 }
 .foodTitle {
   margin: 1rem 0;
   background-color: var(--bg-secondary-color);
+}
+.titleFlexRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,5 +47,10 @@
   }
   .section {
     font-size: 2rem;
+  }
+  .maxWidth {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding: 0 1.2rem;
   }
 }

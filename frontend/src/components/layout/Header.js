@@ -10,15 +10,19 @@ function Header() {
       {/* <Navbar /> */}
       {/** Hero */}
       <section className={styles.section}>
-        <h1 className={styles.h1}>Comidas de tradición desde 1977</h1>
-        <SearchInput />
+        <div className={styles.maxWidth}>
+          <h1 className={styles.h1}>Comidas de tradición desde 1977</h1>
+          <SearchInput />
+        </div>
         <div className={styles.foodTitle}>
-          <h2 className={styles.h2}>¡No olvides los Domingos de pastas!</h2>
-          <img
-            className={styles.pastaLogo}
-            src={logoPasta}
-            alt="mujer comiendo pasta"
-          />
+          <div className={`${styles.maxWidth} ${styles.titleFlexRow}`}>
+            <h2 className={styles.h2}>¡No olvides los Domingos de pastas!</h2>
+            <img
+              className={styles.pastaLogo}
+              src={logoPasta}
+              alt="mujer comiendo pasta"
+            />
+          </div>
         </div>
       </section>
     </div>
