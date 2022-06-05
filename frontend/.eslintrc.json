@@ -26,6 +26,8 @@
     "eol-last": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/function-component-definition": "off",
-    "max-len": "off"
+    "max-len": "off",
+    "react/button-has-type": "off",
+    "no-unused-expressions": "off",
   }
 }
