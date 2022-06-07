@@ -20,6 +20,12 @@
     "object-curly-newline": "off",
     "default-param-last": "off",
     "linebreak-style": "off",
-    "no-restricted-exports": "off"
+    "no-restricted-exports": "off",
+    "arrow-body-style": "off",
+    "prefer-template": "off",
+    "eol-last": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/function-component-definition": "off",
+    "max-len": "off"
   }
 }
